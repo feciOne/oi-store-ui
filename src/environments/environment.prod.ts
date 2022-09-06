@@ -1,3 +1,8 @@
-export const environment = {
-  production: true
+import { Environment } from './environment.model';
+
+export const environment: Environment = {
+  production: true,
+  api: {
+    url: ''
+  }
 };

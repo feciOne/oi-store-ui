@@ -1,0 +1,335 @@
+<section class="mt-8 mb-lg-14 mb-8">
+  <!-- container -->
+  <div class="container">
+    <!-- row -->
+    <div class="row gx-10">
+      <!-- col -->
+      <div class="col-lg-3 col-md-4 mb-6 mb-md-0">
+        <div *ngIf="categoryList.length > 0" class="py-4">
+          <!-- heading -->
+          <h5 class="mb-3">Categories</h5>
+          <!-- nav -->
+          <ul class="nav nav-category" id="categoryCollapseMenu">
+            <!-- nav item -->
+            <li
+              *ngFor="let category of (categoryList | filterBy:'parentId':null)"
+              class="nav-item border-bottom w-100 collapsed"
+              [attr.data-bs-toggle]="'collapse'"
+              [attr.data-bs-target]="'#category' + category.id"
+              [attr.aria-expanded]="false"
+              [attr.aria-controls]="'category' + category.id"
+            >
+              <a href="#" class="nav-link">
+                {{ category.name }}
+                <i class="feather-icon icon-chevron-right"></i
+              ></a>
+
+              <div
+                [id]="'category' + category.id"
+                class="accordion-collapse collapse"
+                data-bs-parent="#categoryCollapseMenu"
+              >
+                <div>
+                  <!-- nav -->
+                  <ul class="nav flex-column ms-3">
+                    <!-- nav item -->
+                    <li *ngFor="let subCategory of (categoryList | filterBy:'parentId':category.id)" class="nav-item">
+                      <a href="#!" class="nav-link">{{ subCategory.name }}</a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+
+        <div class="py-4">
+          <!-- Banner Design -->
+          <!-- Banner Content -->
+          <div class="position-absolute p-5 py-8">
+            <h3 class="mb-1">Fresh Fruits</h3>
+            <p>Get Upto 25% Off</p>
+            <a href="#" class="btn btn-dark"
+              >Shop Now<i class="feather-icon icon-arrow-right"></i
+            ></a>
+          </div>
+          <!-- Banner Content -->
+          <!-- Banner Image -->
+          <!-- img --><img
+            src="../assets/images/banner/assortment-citrus-fruits.png"
+            alt=""
+            class="img-fluid rounded-3"
+          />
+          <!-- Banner Image -->
+        </div>
+        <!-- Banner Design -->
+      </div>
+      <div class="col-lg-9 col-md-8">
+        <!-- card -->
+        <div class="card mb-4 bg-light border-0">
+          <!-- card body -->
+          <div class="card-body p-9">
+            <h1 class="mb-0">Snacks &amp; Munchies</h1>
+          </div>
+        </div>
+        <!-- list icon -->
+        <div class="d-md-flex justify-content-between align-items-center">
+          <div>
+            <p class="mb-3 mb-md-0">
+              <span class="text-dark">24 </span> Products found
+            </p>
+          </div>
+          <!-- icon -->
+          <div class="d-flex justify-content-between align-items-center">
+            <a href="shop-list.html" class="text-muted me-3"
+              ><i class="bi bi-list-ul"></i
+            ></a>
+            <a href="shop-grid.html" class="text-muted me-3"
+              ><i class="bi bi-grid"></i
+            ></a>
+            <a href="shop-grid-3-column.html" class="me-3 active"
+              ><i class="bi bi-grid-3x3-gap"></i
+            ></a>
+            <!-- select option -->
+            <div class="me-2">
+              <select class="form-select" aria-label="Default select example">
+                <option selected="">Show: 50</option>
+                <option value="10">10</option>
+                <option value="20">20</option>
+                <option value="30">30</option>
+              </select>
+            </div>
+            <!-- select option -->
+            <div>
+              <select class="form-select" aria-label="Default select example">
+                <option selected="">Sort by: Featured</option>
+                <option value="Low to High">Price: Low to High</option>
+                <option value="High to Low">Price: High to Low</option>
+                <option value="Release Date">Release Date</option>
+                <option value="Avg. Rating">Avg. Rating</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <!-- row -->
+        <div
+          class="row g-4 row-cols-xl-3 row-cols-lg-3 row-cols-2 row-cols-md-2 mt-2"
+        >
+          <!-- col -->
+          <div class="col">
+            <!-- card -->
+            <div class="card card-product">
+              <div class="card-body">
+                <!-- badge -->
+                <div class="text-center position-relative">
+                  <div class="position-absolute top-0 start-0">
+                    <span class="badge bg-danger">Sale</span>
+                  </div>
+                  <a href="#!">
+                    <!-- img --><img
+                      src="../assets/images/products/product-img-7.jpg"
+                      alt="Grocery Ecommerce Template"
+                      class="mb-3 img-fluid"
+                  /></a>
+                </div>
+                <!-- heading -->
+                <div class="text-small mb-1">
+                  <a href="#!" class="text-decoration-none text-muted"
+                    ><small>Snack &amp; Munchies</small></a
+                  >
+                </div>
+                <h2 class="fs-6">
+                  <a href="#!" class="text-inherit text-decoration-none"
+                    >Haldiram's Sev Bhujia</a
+                  >
+                </h2>
+                <div>
+                  <!-- rating -->
+                  <small class="text-warning">
+                    <i class="bi bi-star-fill"></i>
+                    <i class="bi bi-star-fill"></i>
+                    <i class="bi bi-star-fill"></i>
+                    <i class="bi bi-star-fill"></i>
+                    <i class="bi bi-star-half"></i
+                  ></small>
+                  <span class="text-muted small">4.5(149)</span>
+                </div>
+                <!-- price -->
+                <div
+                  class="d-flex justify-content-between align-items-center mt-3"
+                >
+                  <div>
+                    <span class="text-dark">$18</span>
+                    <span class="text-decoration-line-through text-muted"
+                      >$24</span
+                    >
+                  </div>
+                  <!-- btn -->
+                  <div>
+                    <a href="#!" class="btn btn-primary btn-sm">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="16"
+                        height="16"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        class="feather feather-plus"
+                      >
+                        <line x1="12" y1="5" x2="12" y2="19"></line>
+                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                      </svg>
+                      Add</a
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- col -->
+          <div class="col">
+            <!-- card -->
+            <div class="card card-product">
+              <div class="card-body">
+                <div class="text-center position-relative">
+                  <div class="position-absolute top-0 start-0">
+                    <span class="badge bg-success">14%</span>
+                  </div>
+
+                  <a href="#!">
+                    <!-- img --><img
+                      src="../assets/images/products/product-img-7.jpg"
+                      alt="Grocery Ecommerce Template"
+                      class="mb-3 img-fluid"
+                  /></a>
+                </div>
+                <!-- heading -->
+                <div class="text-small mb-1">
+                  <a href="#!" class="text-decoration-none text-muted"
+                    ><small>Bakery &amp; Biscuits</small></a
+                  >
+                </div>
+                <h2 class="fs-6">
+                  <a href="#!" class="text-inherit text-decoration-none"
+                    >NutriChoice Digestive
+                  </a>
+                </h2>
+                <div class="text-warning">
+                  <!-- rating -->
+                  <small>
+                    <i class="bi bi-star-fill"></i>
+                    <i class="bi bi-star-fill"></i>
+                    <i class="bi bi-star-fill"></i>
+                    <i class="bi bi-star-fill"></i>
+                    <i class="bi bi-star-half"></i
+                  ></small>
+                  <span class="text-muted small">4.5 (25)</span>
+                </div>
+                <!-- price -->
+                <div
+                  class="d-flex justify-content-between align-items-center mt-3"
+                >
+                  <div><span class="text-dark">$24</span></div>
+                  <!-- btn -->
+                  <div>
+                    <a href="#!" class="btn btn-primary btn-sm">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="16"
+                        height="16"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        class="feather feather-plus"
+                      >
+                        <line x1="12" y1="5" x2="12" y2="19"></line>
+                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                      </svg>
+                      Add</a
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- col -->
+          <div class="col">
+            <!-- card -->
+            <div class="card card-product">
+              <div class="card-body">
+                <div class="text-center position-relative">
+                  <a href="#!"
+                    ><img
+                      src="../assets/images/products/product-img-7.jpg"
+                      alt="Grocery Ecommerce Template"
+                      class="mb-3 img-fluid"
+                  /></a>
+                </div>
+                <!-- heading -->
+                <div class="text-small mb-1">
+                  <a href="#!" class="text-decoration-none text-muted"
+                    ><small>Bakery &amp; Biscuits</small></a
+                  >
+                </div>
+                <h2 class="fs-6">
+                  <a href="#!" class="text-inherit text-decoration-none"
+                    >Cadbury 5 Star Chocolate</a
+                  >
+                </h2>
+                <div class="text-warning">
+                  <!-- rating -->
+                  <small>
+                    <i class="bi bi-star-fill"></i>
+                    <i class="bi bi-star-fill"></i>
+                    <i class="bi bi-star-fill"></i>
+                    <i class="bi bi-star-fill"></i>
+                    <i class="bi bi-star-fill"></i
+                  ></small>
+                  <span class="text-muted small">5 (469)</span>
+                </div>
+                <!-- price -->
+                <div
+                  class="d-flex justify-content-between align-items-center mt-3"
+                >
+                  <div>
+                    <span class="text-dark">$32</span>
+                    <span class="text-decoration-line-through text-muted"
+                      >$35</span
+                    >
+                  </div>
+                  <!-- btn -->
+                  <div>
+                    <a href="#!" class="btn btn-primary btn-sm">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="16"
+                        height="16"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        class="feather feather-plus"
+                      >
+                        <line x1="12" y1="5" x2="12" y2="19"></line>
+                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                      </svg>
+                      Add</a
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

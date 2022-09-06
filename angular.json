@@ -23,9 +23,14 @@
               "src/assets"
             ],
             "styles": [
+              "src/assets/libs/feather-webfont/dist/feather-icons.css",
+              "src/assets/css/theme.min.css",
               "src/styles.css"
             ],
-            "scripts": []
+            "scripts": [
+              "src/assets/js/bootstrap.bundle.min.js",
+              "src/assets/js/theme.min.js"
+            ]
           },
           "configurations": {
             "production": {
