@@ -25,7 +25,7 @@ export class AuthenticationService {
   }
 
   logout(): void {
-    // TODO
+    localStorage.clear();
   }
 
   private doAuthOperations(data: AuthResponse): void {
