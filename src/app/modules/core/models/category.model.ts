@@ -8,7 +8,6 @@ export interface CategoryAttribute extends AttributeBase {
 
 export type ParentCategoryInfo = Omit<CategoryAttribute, 'category'>;
 
-
 export interface CategoryListItem {
   id: number;
   name: string;

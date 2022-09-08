@@ -25,14 +25,15 @@ export class BaseApiService {
     return this.httpClient.get<T>(`${this.baseApiUrl}${endpointUrl}`, options);
   }
 
-  public save(
+  public save<T>(
     endPointUrl: string,
     requestBody: any,
     headers?: HttpHeaders,
     searchParams?: BaseOptionsRequest
   ): Observable<any> {
     const options = this.getOptions(searchParams, headers);
-    return this.httpClient.post(`${this.baseApiUrl}${endPointUrl}`, requestBody, options);
+    
+    return this.httpClient.post<T>(`${this.baseApiUrl}${endPointUrl}`, requestBody, options);
   }
 
   public update(

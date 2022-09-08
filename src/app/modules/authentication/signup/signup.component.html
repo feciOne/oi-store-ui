@@ -14,30 +14,38 @@
           <p>Welcome to OI Store! Enter your email to get started.</p>
         </div>
         <!-- form -->
-        <form>
+        <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
           <div class="row g-3">
             <!-- col -->
-            <div class="col">
-              <!-- input --><input type="text" class="form-control" placeholder="First name" aria-label="First name" required="">
-            </div>
-            <div class="col">
-              <!-- input --><input type="text" class="form-control" placeholder="Last name" aria-label="Last name" required="">
+            <div class="col-12">
+              <!-- input --><input class="form-control" placeholder="Username" aria-label="Username" formControlName="username" />
+              <div class="valid-feedback">
+                Looks good!
+              </div>
             </div>
             <div class="col-12">
 
-              <!-- input --><input type="email" class="form-control" id="inputEmail4" placeholder="Email" required="">
+              <!-- input --><input type="email" class="form-control" placeholder="Email" formControlName="email" />
             </div>
             <div class="col-12">
 
-              <!-- input --><input type="password" class="form-control" id="inputPassword4" placeholder="Password" required="">
+              <!-- input --><input type="password" class="form-control" placeholder="Password" formControlName="password" />
+            </div>
+            <div class="col-12">
+
+              <!-- input --><input type="password" class="form-control" placeholder="Confirm Password" formControlName="confirmPassword" />
             </div>
             <!-- btn -->
-            <div class="col-12 d-grid"> <button type="submit" class="btn btn-primary">Register</button>
+            <div class="col-12 d-grid">
+              <button type="submit" class="btn btn-primary" [disabled]="!registerForm.valid">Register</button>
             </div>
 
             <!-- text -->
-            <p><small>By continuing, you agree to our <a href="#!"> Terms of Service</a> &amp; <a href="#!">Privacy
-                  Policy</a></small></p>
+            <p>
+              <small>
+                By continuing, you agree to our <a href="#!"> Terms of Service</a> &amp; <a href="#!">Privacy Policy</a>
+              </small>
+            </p>
           </div>
         </form>
       </div>

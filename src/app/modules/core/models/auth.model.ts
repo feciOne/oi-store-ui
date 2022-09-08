@@ -9,7 +9,7 @@ export interface User extends AttributeBase {
   blocked: boolean;
 }
 
-export interface LoginResponse {
+export interface AuthResponse {
   jwt: string;
   user: User;
 }
@@ -17,6 +17,11 @@ export interface LoginResponse {
 export interface RegisterRequest {
   username: string;
   email: string;
+  password: string;
+}
+
+export interface AuthRequest {
+  identifier: string;
   password: string;
 }
 
