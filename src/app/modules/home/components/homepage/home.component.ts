@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import { CategoryService } from '../../../core/services/category/category.service';
 import { CategoryListItem } from '../../../core/models/category.model';
 import { Subscription } from 'rxjs';
@@ -10,14 +10,15 @@ import { Subscription } from 'rxjs';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class HomeComponent implements OnInit, OnDestroy {
-  categoryList!: CategoryListItem[];
+  categoryList: CategoryListItem[] = [];
   subs: Subscription[] = [];
 
-  constructor(private readonly categoryService: CategoryService) { }
+  constructor(private readonly categoryService: CategoryService, private cdRef: ChangeDetectorRef) { }
 
   ngOnInit(): void {
     const catSub = this.categoryService.getCategories().subscribe((res: CategoryListItem[]) => {
       this.categoryList = res;
+      this.cdRef.detectChanges();
     });
 
     this.subs.push(catSub);
