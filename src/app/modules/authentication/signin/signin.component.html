@@ -13,17 +13,17 @@
           <p>Welcome back to OI Store! Enter your email to get started.</p>
         </div>
 
-        <form>
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
           <div class="row g-3">
             <!-- row -->
 
             <div class="col-12">
               <!-- input -->
-              <input type="email" class="form-control" id="inputEmail4" placeholder="Email" required="">
+              <input type="email" class="form-control" placeholder="Email" formControlName="identifier" />
             </div>
             <div class="col-12">
               <!-- input -->
-              <input type="password" class="form-control" id="inputPassword4" placeholder="Password" required="">
+              <input type="password" class="form-control" placeholder="Password" formControlName="password" />
             </div>
             <div class="d-flex justify-content-between">
               <!-- form check -->
@@ -36,10 +36,10 @@
               <div> Forgot password? <a href="../pages/forgot-password.html">Reset It</a></div>
             </div>
             <!-- btn -->
-            <div class="col-12 d-grid"> <button type="submit" class="btn btn-primary">Sign In</button>
+            <div class="col-12 d-grid"> <button type="submit" class="btn btn-primary" [disabled]="!loginForm.valid">Sign In</button>
             </div>
             <!-- link -->
-            <div>Don’t have an account? <a href="../pages/signup.html"> Sign Up</a></div>
+            <div>Don’t have an account? <a routerLink="/auth/signup">Sign Up</a></div>
           </div>
         </form>
       </div>

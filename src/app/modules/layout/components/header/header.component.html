@@ -277,34 +277,31 @@
                 Account
               </a>
               <ul class="dropdown-menu">
-                <li>
-                  <a class="dropdown-item" routerLink="/auth">Sign in</a>
-                </li>
-                <li>
-                  <a class="dropdown-item" routerLink="/auth/signup">Sign up</a>
-                </li>
-                <li class="dropdown-submenu dropend">
-                  <a class="dropdown-item dropdown-list-group-item dropdown-toggle" href="#">
-                    My Account
-                  </a>
-                  <ul class="dropdown-menu">
-                    <li>
-                      <a class="dropdown-item" href="./pages/account-orders.html">Orders</a>
-                    </li>
-                    <li>
-                      <a class="dropdown-item" href="./pages/account-settings.html">Settings</a>
-                    </li>
-                    <li>
-                      <a class="dropdown-item" href="./pages/account-address.html">Address</a>
-                    </li>
-                    <li>
-                      <a class="dropdown-item" href="./pages/account-payment-method.html">Payment Method</a>
-                    </li>
-                    <li>
-                      <a class="dropdown-item" href="./pages/account-notification.html">Notification</a>
-                    </li>
-                  </ul>
-                </li>
+                <ng-container *ngIf="!authenticated">
+                  <li>
+                    <a class="dropdown-item" routerLink="/auth">Sign in</a>
+                  </li>
+                  <li>
+                    <a class="dropdown-item" routerLink="/auth/signup">Sign up</a>
+                  </li>
+                </ng-container>
+                <ng-container *ngIf="authenticated">
+                  <li class="dropdown-submenu dropend">
+                    <a class="dropdown-item dropdown-list-group-item dropdown-toggle" href="#">
+                      My Account
+                    </a>
+                    <ul class="dropdown-menu">
+                      <li>
+                        <a class="dropdown-item" href="./pages/account-orders.html">Orders</a>
+                      </li>
+                    </ul>
+                  </li>
+                  <li>
+                    <a class="dropdown-item" (click)="doLogout()" style="cursor:pointer">Logout</a>
+                  </li>
+                </ng-container>
+
+
               </ul>
             </li>
             <li class="nav-item">

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AuthenticationService } from './modules/core/services/auth/authentication.service';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,8 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'OI Store';
+
+  constructor(private readonly authenticationService: AuthenticationService) {
+    this.authenticationService.canLoadAuthInfoFromLocalStorage();
+  }
 }
