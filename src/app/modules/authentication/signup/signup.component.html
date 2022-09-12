@@ -19,21 +19,22 @@
             <!-- col -->
             <div class="col-12">
               <!-- input --><input class="form-control" placeholder="Username" aria-label="Username" formControlName="username" />
-              <div class="valid-feedback">
-                Looks good!
-              </div>
+              <app-common-error-display [error]="username?.errors" [showError]="username?.touched"></app-common-error-display>
             </div>
             <div class="col-12">
 
               <!-- input --><input type="email" class="form-control" placeholder="Email" formControlName="email" />
+              <app-common-error-display [error]="email?.errors" [showError]="email?.touched"></app-common-error-display>
             </div>
             <div class="col-12">
 
               <!-- input --><input type="password" class="form-control" placeholder="Password" formControlName="password" />
+              <app-common-error-display [error]="password?.errors" [showError]="password?.touched"></app-common-error-display>
             </div>
             <div class="col-12">
 
               <!-- input --><input type="password" class="form-control" placeholder="Confirm Password" formControlName="confirmPassword" />
+              <app-common-error-display [error]="confirmPassword?.errors" [showError]="confirmPassword?.touched"></app-common-error-display>
             </div>
             <!-- btn -->
             <div class="col-12 d-grid">

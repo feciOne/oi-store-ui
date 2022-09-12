@@ -16,8 +16,17 @@ export class SignupComponent implements OnInit {
   get username() {
     return this.registerForm.get('username');
   }
-  get usernameError() {
-    return this.registerForm.get('username');
+  get email() {
+    return this.registerForm.get('email');
+  }
+  get password() {
+    return this.registerForm.get('password');
+  }
+  get confirmPassword() {
+    return this.registerForm.get('confirmPassword');
+  }
+  get form() {
+    return this.registerForm.errors;
   }
 
   constructor(private authenticationService: AuthenticationService, private fb: FormBuilder) { }
@@ -32,10 +41,13 @@ export class SignupComponent implements OnInit {
 
     if (!this.registerForm.valid) return;
 
-    console.log(this.registerForm.getRawValue());
-    const data = this.registerForm.getRawValue() as RegisterRequest;
+    const data = this.registerForm.getRawValue();
+    delete data['confirmPassword'];
 
-    this.authenticationService.register({ username: data.username, email: data.email, password: data.password }).subscribe();
+    this.authenticationService.register(
+      data
+      // { username: data.username, email: data.email, password: data.password }
+    ).subscribe();
   }
 
   private setForm() {

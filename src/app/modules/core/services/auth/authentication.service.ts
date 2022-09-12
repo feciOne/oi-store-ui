@@ -18,6 +18,10 @@ export class AuthenticationService {
   private token$$: BehaviorSubject<string> = new BehaviorSubject<string>('');
   private userInfo$$ = new BehaviorSubject<User>({} as User);
 
+  get token() {
+    return this._token;
+  }
+
   constructor(private baseApiService: BaseApiService, private router: Router) {
     this.token$ = this.token$$.asObservable();
     this.userInfo$ = this.userInfo$$.asObservable();
@@ -25,7 +29,7 @@ export class AuthenticationService {
 
   register(data: RegisterRequest): Observable<AuthResponse> {
     return this.baseApiService.save<AuthResponse>(`${this._commonPath}/register`, data).pipe(
-      tap(this.doAuthOperations)
+      tap(res => this.doAuthOperations(res))
     );
   }
 

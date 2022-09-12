@@ -7,7 +7,7 @@ import { Environment } from './environment.model';
 export const environment: Environment = {
   production: false,
   api: {
-    url: 'http://demirci.xyz:1337/api/'
+    url: 'http://localhost:1337/api/'
   }
 };
 
