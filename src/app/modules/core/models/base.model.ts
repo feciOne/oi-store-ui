@@ -36,4 +36,4 @@ export interface Pagination {
   total: number;
 }
 
-export type GenericResponse<T> = GenericList<T> & { meta?: Meta } & { error?: Error };
+export type GenericResponse<T> = GenericList<T> & { meta: Meta } & { error?: Error };

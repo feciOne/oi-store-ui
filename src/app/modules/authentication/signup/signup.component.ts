@@ -33,6 +33,8 @@ export class SignupComponent implements OnInit {
 
   ngOnInit(): void {
     this.setForm();
+
+    this.registerForm.valueChanges.subscribe(()=>console.log(this.registerForm.errors));
   }
 
   onSubmit(): void {
@@ -55,7 +57,7 @@ export class SignupComponent implements OnInit {
       username: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]],
-      confirmPassword: ['', [Validators.required, ]] // matchFieldsValidator('password')
+      confirmPassword: ['', [Validators.required, Validators.minLength(6)]] // matchFieldsValidator('password')
     }, {
       validator: matchFieldsValidator('password', 'confirmPassword')
     });

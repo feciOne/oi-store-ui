@@ -5,8 +5,6 @@ export function matchFieldsValidator(controlName: string, matchingControlName: s
       const control = formGroup.controls[controlName];
       const matchingControl = formGroup.controls[matchingControlName];
 
-      console.log('match field validator');
-
       if (matchingControl.errors && !matchingControl.errors['matchFields']) {
           return;
       }
