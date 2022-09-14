@@ -5,24 +5,30 @@ import { GenericList, GenericResponse, GenericSingle, Item } from '../../core/mo
 import { CategoryAttribute, ParentCategoryInfo } from '../../core/models/category.model';
 import { ImageAttribute, ImageItem } from '../../core/models/image.model';
 import { PAGINATION, PARAMS } from '../../core/models/params.enum';
-import { ProductAttribute } from '../../core/models/product.model';
+import { ProductAttribute, ProductListItem } from '../../core/models/product.model';
 import { BaseApiService } from '../../core/services/base-api.service';
+import { CategoryService } from '../../core/services/category/category.service';
 
 @Injectable()
 export class ProductService {
   private total$$ = new BehaviorSubject<number>(0);
   total$!: Observable<number>;
 
-  constructor(private baseApiService: BaseApiService) {
+  constructor(private baseApiService: BaseApiService, private categoryService: CategoryService) {
     this.total$ = this.total$$.asObservable();
   }
 
-  getProducts(pageSize: number, categoryId?: number): Observable<any> {
+  getProducts(pageSize: number, categoryId?: number): Observable<ProductListItem[]> {
+    const catId = this.categoryService.getSelectedCategoryId();
+
+    if (catId) categoryId = catId;
+
     const params: BaseOptionsRequest = {
       [PARAMS.populate]: 'images,category',
       [PARAMS.byCategoryId]: categoryId ? categoryId : null,
       [PAGINATION.pageSize]: pageSize ? pageSize : null
     };
+
     return this.baseApiService.get<GenericResponse<ProductAttribute>>('products', params).pipe(
       map((response: GenericResponse<ProductAttribute>) => {
         const total: number = response.meta?.pagination?.total || 0

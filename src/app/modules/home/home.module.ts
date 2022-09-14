@@ -5,16 +5,24 @@ import { HomeRoutingModule } from './home-routing.module';
 import { CoreModule } from '../core/core.module';
 import * as components from './components';
 import { ProductService } from './services/product.service';
+import { TranslocoModule } from '@ngneat/transloco';
+import { ReactiveFormsModule } from '@angular/forms';
 
+const COMPONENTS = [
+  components.HomeComponent,
+  components.TitleCardComponent
+];
 
 @NgModule({
   declarations: [
-    components.HomeComponent
+    ...COMPONENTS
   ],
   imports: [
     CommonModule,
     CoreModule,
-    HomeRoutingModule
+    HomeRoutingModule,
+    ReactiveFormsModule,
+    TranslocoModule
   ],
   providers: [ProductService]
 })

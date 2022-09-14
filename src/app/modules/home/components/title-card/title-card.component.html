@@ -1,0 +1,9 @@
+<!-- card -->
+<div *ngIf="{ cat: selectedCategory$ | async } as data" class="card mb-4 bg-light border-0">
+  <!-- card body -->
+  <div class="card-body p-9">
+    <h1 class="mb-0" *transloco="let t">
+      {{ t('productTitle') }}{{ data.cat ? ':' : '' }}
+      <small *ngIf="data.cat" class="text-muted">{{ data.cat.name }}</small></h1>
+  </div>
+</div>

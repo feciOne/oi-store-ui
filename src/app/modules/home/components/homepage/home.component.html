@@ -13,28 +13,28 @@
             <!-- nav item -->
             <li
               *ngFor="let category of (categoryList | filterBy:'parentId':null)"
-              class="nav-item border-bottom w-100 collapsed"
-              [attr.data-bs-toggle]="'collapse'"
+              class="nav-item border-bottom w-100"
+              [attr.data-bs-toggle]="''"
               [attr.data-bs-target]="'#category' + category.id"
               [attr.aria-expanded]="false"
               [attr.aria-controls]="'category' + category.id"
             >
-              <a href="#" class="nav-link">
+              <a (click)="selectCategory(category)" class="nav-link">
                 {{ category.name }}
                 <i class="feather-icon icon-chevron-right"></i
               ></a>
 
               <div
                 [id]="'category' + category.id"
-                class="accordion-collapse collapse"
-                data-bs-parent="#categoryCollapseMenu"
+                class="accordion-collapse collapse show"
+                [attr.data-bs-parent]="'#categoryCollapseMenu'"
               >
                 <div>
                   <!-- nav -->
                   <ul class="nav flex-column ms-3">
                     <!-- nav item -->
                     <li *ngFor="let subCategory of (categoryList | filterBy:'parentId':category.id)" class="nav-item">
-                      <a href="#!" class="nav-link">{{ subCategory.name }}</a>
+                      <a (click)="selectCategory(subCategory)" class="nav-link">{{ subCategory.name }}</a>
                     </li>
                   </ul>
                 </div>
@@ -65,13 +65,7 @@
         <!-- Banner Design -->
       </div>
       <div class="col-lg-9 col-md-8">
-        <!-- card -->
-        <div class="card mb-4 bg-light border-0">
-          <!-- card body -->
-          <div class="card-body p-9">
-            <h1 class="mb-0">Snacks &amp; Munchies</h1>
-          </div>
-        </div>
+        <app-title-card></app-title-card>
         <!-- list icon -->
         <div class="d-md-flex justify-content-between align-items-center">
           <div>
@@ -90,25 +84,26 @@
             <a href="shop-grid-3-column.html" class="me-3 active"
               ><i class="bi bi-grid-3x3-gap"></i
             ></a>
-            <!-- select option -->
-            <div class="me-2">
-              <select class="form-select" aria-label="Default select example">
-                <option selected="">Show: 50</option>
-                <option value="10">10</option>
-                <option value="20">20</option>
-                <option value="30">30</option>
-              </select>
-            </div>
-            <!-- select option -->
-            <div>
-              <select class="form-select" aria-label="Default select example">
-                <option selected="">Sort by: Featured</option>
-                <option value="Low to High">Price: Low to High</option>
-                <option value="High to Low">Price: High to Low</option>
-                <option value="Release Date">Release Date</option>
-                <option value="Avg. Rating">Avg. Rating</option>
-              </select>
-            </div>
+            <form [formGroup]="filterForm" class="d-flex">
+              <!-- select option -->
+              <div class="me-2">
+                <select class="form-select" aria-label="Default select example" formControlName="pageSize">
+                  <option value="1">10</option>
+                  <option value="2">20</option>
+                  <option value="3">30</option>
+                </select>
+              </div>
+              <!-- select option -->
+              <div>
+                <select class="form-select" aria-label="Default select example">
+                  <option selected="">Sort by: Featured</option>
+                  <option value="Low to High">Price: Low to High</option>
+                  <option value="High to Low">Price: High to Low</option>
+                  <option value="Release Date">Release Date</option>
+                  <option value="Avg. Rating">Avg. Rating</option>
+                </select>
+              </div>
+            </form>
           </div>
         </div>
         <!-- row -->
