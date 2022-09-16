@@ -10,6 +10,8 @@ const routes: Routes = [
     loadChildren: () => import('../../modules/account/account.module').then(m => m.AccountModule),
     canActivate: [AuthGuard],
   },
+  { path: 'product/:id', loadChildren: () => import('../product/product.module').then(m => m.ProductModule) },
+  { path: 'home', redirectTo: '/', pathMatch: 'full' }
 ];
 
 @NgModule({

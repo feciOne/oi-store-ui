@@ -22,6 +22,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   products$!: Observable<ProductListItem[]>;
 
   filterForm: FormGroup = new FormGroup({
+    page: new FormControl('1'),
     pageSize: new FormControl('1')
   });
 
@@ -36,17 +37,21 @@ export class HomeComponent implements OnInit, OnDestroy {
     });
 
     this.total$ = this.productService.total$;
-
-
     this.products$ = merge(this.categoryService.selectedCategory$, this.filterForm.valueChanges).pipe(
-      switchMap(() => this.productService.getProducts(this.filterForm.get('pageSize')?.value))
+      switchMap(() => this.productService.getProducts(this.filterForm.get('page')?.value, this.filterForm.get('pageSize')?.value))
     )
 
-    this.subs.push(catSub);
+    const pageSizeSub = this.filterForm.get('pageSize')!.valueChanges.subscribe(() => console.log('Listening any form control like here!'));
+
+    this.subs.push(...[catSub, pageSizeSub]);
   }
 
   selectCategory(category: CategoryListItem): void {
     this.categoryService.setSelectedCategory(category);
+  }
+
+  pageChanged(pageIndex: number): void {
+    this.filterForm.patchValue({ page: pageIndex });
   }
 
   ngOnDestroy(): void {

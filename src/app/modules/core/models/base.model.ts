@@ -37,3 +37,4 @@ export interface Pagination {
 }
 
 export type GenericResponse<T> = GenericList<T> & { meta: Meta } & { error?: Error };
+export type GenericResponseSingle<T> = GenericSingle<T> & { meta: Meta } & { error?: Error };
