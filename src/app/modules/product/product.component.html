@@ -1,4 +1,4 @@
-<ng-container *ngIf="productDetail$ | async as details">
+<ng-container *ngIf="productDetails as details">
   <section class="mt-8">
     <div class="container">
       <div class="row">
@@ -27,106 +27,26 @@
                     <div
                       class="zoom"
                       onmousemove="zoom(event)"
-                      style="
-                        background-image: url(http://localhost:1337/uploads/71l_JQWVZ_9a_L_AC_SX_466_68f1a09df3.jpg);
-                      "
+                      [style]="{'background-image': 'url(' + serverUrl + details.images[0].url + ')'}"
                     >
                       <!-- img -->
                       <img
-                        src="http://localhost:1337/uploads/71l_JQWVZ_9a_L_AC_SX_466_68f1a09df3.jpg"
-                        alt=""
+                        [src]="serverUrl + details.images[0].url"
+                        [alt]="details.images[0].alternativeText"
                       />
                     </div>
                   </div>
                   <div
-                    class="zoom tns-item tns-slide-active"
+                    *ngFor="let image of details.images; index as i; first as isFirst"
+                    class="zoom tns-item"
+                    [class.tns-slide-active]="isFirst"
                     onmousemove="zoom(event)"
-                    style="
-                      background-image: url('../assets/images/products/product-single-img-1.jpg');
-                      background-position: 79.8742% 92.4528%;
-                    "
-                    id="product-item0"
+                    [style]="{'background-image': 'url(' + serverUrl + image.url + ')'}"
+                    [id]="'product-item' + i"
                   >
-                    <!-- img -->
                     <!-- img --><img
-                      src="../assets/images/products/product-single-img-1.jpg"
-                      alt=""
-                    />
-                  </div>
-                  <div
-                    class="tns-item"
-                    id="product-item1"
-                    aria-hidden="true"
-                    tabindex="-1"
-                  >
-                    <div
-                      class="zoom"
-                      onmousemove="zoom(event)"
-                      style="
-                        background-image: url('../assets/images/products/product-single-img-2.jpg');
-                        background-position: 43.0818% 98.7421%;
-                      "
-                    >
-                      <!-- img -->
-                      <img
-                        src="../assets/images/products/product-single-img-2.jpg"
-                        alt=""
-                      />
-                    </div>
-                  </div>
-                  <div
-                    class="tns-item"
-                    id="product-item2"
-                    aria-hidden="true"
-                    tabindex="-1"
-                  >
-                    <div
-                      class="zoom"
-                      onmousemove="zoom(event)"
-                      style="
-                        background-image: url(../assets/images/products/product-single-img-3.jpg);
-                      "
-                    >
-                      <!-- img -->
-                      <img
-                        src="../assets/images/products/product-single-img-3.jpg"
-                        alt=""
-                      />
-                    </div>
-                  </div>
-                  <div
-                    class="tns-item"
-                    id="product-item3"
-                    aria-hidden="true"
-                    tabindex="-1"
-                  >
-                    <div
-                      class="zoom"
-                      onmousemove="zoom(event)"
-                      style="
-                        background-image: url(../assets/images/products/product-single-img-4.jpg);
-                      "
-                    >
-                      <!-- img -->
-                      <img
-                        src="../assets/images/products/product-single-img-4.jpg"
-                        alt=""
-                      />
-                    </div>
-                  </div>
-                  <div
-                    class="zoom tns-item tns-slide-cloned"
-                    onmousemove="zoom(event)"
-                    style="
-                      background-image: url(../assets/images/products/product-single-img-1.jpg);
-                    "
-                    aria-hidden="true"
-                    tabindex="-1"
-                  >
-                    <!-- img -->
-                    <!-- img --><img
-                      src="../assets/images/products/product-single-img-1.jpg"
-                      alt=""
+                      [src]="serverUrl + image.url"
+                      [alt]="image.alternativeText"
                     />
                   </div>
                 </div>
@@ -141,61 +61,18 @@
               aria-label="Carousel Pagination"
             >
               <div
-                class="col-3 tns-nav-active"
-                data-nav="0"
+                *ngFor="let image of details.images; index as i; first as isFirst"
+                class="col-3"
+                [class.tns-nav-active]="isFirst"
+                [attr.data-nav]="i"
                 aria-label="Carousel Page 1 (Current Slide)"
                 aria-controls="product"
               >
                 <div class="thumbnails-img">
                   <!-- img -->
                   <img
-                    src="../assets/images/products/product-single-img-1.jpg"
-                    alt=""
-                  />
-                </div>
-              </div>
-              <div
-                class="col-3"
-                data-nav="1"
-                aria-label="Carousel Page 2"
-                aria-controls="product"
-                tabindex="-1"
-              >
-                <div class="thumbnails-img">
-                  <!-- img -->
-                  <img
-                    src="../assets/images/products/product-single-img-2.jpg"
-                    alt=""
-                  />
-                </div>
-              </div>
-              <div
-                class="col-3"
-                data-nav="2"
-                aria-label="Carousel Page 3"
-                aria-controls="product"
-                tabindex="-1"
-              >
-                <div class="thumbnails-img">
-                  <!-- img -->
-                  <img
-                    src="../assets/images/products/product-single-img-3.jpg"
-                    alt=""
-                  />
-                </div>
-              </div>
-              <div
-                class="col-3"
-                data-nav="3"
-                aria-label="Carousel Page 4"
-                aria-controls="product"
-                tabindex="-1"
-              >
-                <div class="thumbnails-img">
-                  <!-- img -->
-                  <img
-                    src="../assets/images/products/product-single-img-4.jpg"
-                    alt=""
+                    [src]="serverUrl + image.url"
+                    [alt]="image.alternativeText"
                   />
                 </div>
               </div>

@@ -24,12 +24,13 @@
             ],
             "styles": [
               "src/assets/libs/feather-webfont/dist/feather-icons.css",
+              "src/assets/libs/tiny-slider/dist/tiny-slider.css",
               "src/assets/css/theme.min.css",
               "src/styles.css"
             ],
             "scripts": [
               "src/assets/js/bootstrap.bundle.min.js",
-              "src/assets/libs/nouislider/dist/nouislider.min.js",
+              "src/assets/libs/tiny-slider/dist/min/tiny-slider.js",
               "src/assets/js/theme.min.js"
             ]
           },

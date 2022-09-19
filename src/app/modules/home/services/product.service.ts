@@ -9,8 +9,11 @@ import { ProductAttribute, ProductListItem } from '../../core/models/product.mod
 import { BaseApiService } from '../../core/services/base-api.service';
 import { CategoryService } from '../../core/services/category/category.service';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class ProductService {
+  currentProductDetail: ProductListItem | null = null;
   private _total = 0;
   private total$$ = new BehaviorSubject<number>(0);
   total$!: Observable<number>;
