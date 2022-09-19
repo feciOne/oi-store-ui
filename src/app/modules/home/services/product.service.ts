@@ -3,6 +3,7 @@ import { BehaviorSubject, map, Observable } from 'rxjs';
 import { BaseOptionsRequest } from '../../core/models/base-options-request.model';
 import { GenericList, GenericResponse, GenericResponseSingle, GenericSingle, Item } from '../../core/models/base.model';
 import { CategoryAttribute, ParentCategoryInfo } from '../../core/models/category.model';
+import { CommentAttribute, CommentListItem } from '../../core/models/comment.model';
 import { ImageAttribute, ImageItem } from '../../core/models/image.model';
 import { PAGINATION, PARAMS } from '../../core/models/params.enum';
 import { ProductAttribute, ProductListItem } from '../../core/models/product.model';
@@ -28,7 +29,7 @@ export class ProductService {
 
   getProduct(id: number): Observable<ProductListItem> {
     const params: BaseOptionsRequest = {
-      [PARAMS.populate]: 'images,category,comment',
+      [PARAMS.populate]: 'images,category,comments',
     };
 
     return this.baseApiService.get<GenericResponseSingle<ProductAttribute>>(`products/${id}`, params).pipe(
@@ -39,8 +40,9 @@ export class ProductService {
           name: item.attributes.name,
           description: item.attributes.description,
           price: item.attributes.price,
+          categoryName: this.getCategoryName(item.attributes.category),
           images: this.getImageList(item.attributes.images),
-          categoryName: this.getCategoryName(item.attributes.category)
+          comments: item.attributes.comments ? this.getCommentList(item.attributes.comments) : []
         };
     }));
   }
@@ -93,5 +95,15 @@ export class ProductService {
 
   private getCategoryName(cat: GenericSingle<CategoryAttribute | ParentCategoryInfo>): string {
     return cat.data.attributes.name;
+  }
+
+  private getCommentList(comments: GenericList<CommentAttribute>): CommentListItem[] {
+    return comments.data.map((comment: Item<CommentAttribute>) => {
+      return {
+        id: comment.id,
+        text: comment.attributes.text,
+        score: comment.attributes.score
+      };
+    });
   }
 }
