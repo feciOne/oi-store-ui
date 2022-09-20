@@ -42,7 +42,7 @@ export class ProductService {
           price: item.attributes.price,
           categoryName: this.getCategoryName(item.attributes.category),
           images: this.getImageList(item.attributes.images),
-          comments: item.attributes.comments ? this.getCommentList(item.attributes.comments) : []
+          comments: item.attributes.comments ? this.getCommentList(item.attributes.comments).reverse() : []
         };
     }));
   }

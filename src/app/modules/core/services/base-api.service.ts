@@ -30,27 +30,29 @@ export class BaseApiService {
     requestBody: any,
     headers?: HttpHeaders,
     searchParams?: BaseOptionsRequest
-  ): Observable<any> {
+  ): Observable<T> {
     const options = this.getOptions(searchParams, headers);
-    
+
     return this.httpClient.post<T>(`${this.baseApiUrl}${endPointUrl}`, requestBody, options);
   }
 
-  public update(
+  public update<T>(
     endPointUrl: string,
     requestBody: any,
     searchParams?: BaseOptionsRequest
-  ): Observable<any> {
+  ): Observable<T> {
     const options = this.getOptions(searchParams);
-    return this.httpClient.put(`${this.baseApiUrl}${endPointUrl}`, requestBody, options);
+
+    return this.httpClient.put<T>(`${this.baseApiUrl}${endPointUrl}`, requestBody, options);
   }
 
-  public remove(
+  public remove<T>(
     endPointUrl: string,
     searchParams?: BaseOptionsRequest
-  ): Observable<any> {
+  ): Observable<T> {
     const options = this.getOptions(searchParams);
-    return this.httpClient.delete(`${this.baseApiUrl}${endPointUrl}`, options);
+
+    return this.httpClient.delete<T>(`${this.baseApiUrl}${endPointUrl}`, options);
   }
 
   private getOptions(searchParams?: BaseOptionsRequest, httpHeaders?: HttpHeaders): Options {

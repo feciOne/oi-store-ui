@@ -24,7 +24,19 @@ export class CommentService {
     )
   }
 
-  createComment(data: CommentRequest): Observable<any> {
-    return this.baseApiService.save('comments', { data: { ...data }});
+  createComment(data: CommentRequest): Observable<Item<CommentAttribute>> {
+    return this.baseApiService.save<GenericResponseSingle<CommentAttribute>>('comments', { data: { ...data }}).pipe(
+      map((response: GenericResponseSingle<CommentAttribute>) => response.data)
+    );
+  }
+
+  updateComment(id: number | null, data: Omit<CommentListItem, 'id'>): Observable<Item<CommentAttribute>> {
+    return this.baseApiService.update<GenericResponseSingle<CommentAttribute>>(`comments/${id}`,  { data: { ...data }}).pipe(
+      map((response: GenericResponseSingle<CommentAttribute>) => response.data)
+    );
+  }
+
+  deleteComment(id: number): Observable<GenericResponseSingle<CommentAttribute>> {
+    return this.baseApiService.remove<GenericResponseSingle<CommentAttribute>>(`comments/${id}`);
   }
 }
