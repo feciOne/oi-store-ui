@@ -1,7 +1,8 @@
 export enum PARAMS  {
   populate = 'populate',
   byCategoryId = 'filters[category][id]',
-  byCategoryName = 'filters[category][name]'
+  byCategoryName = 'filters[category][name]',
+  byProductName = 'filters[nam][$containsi]',
 }
 
 export enum PAGINATION {

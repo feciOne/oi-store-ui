@@ -3,7 +3,6 @@ import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from '../core/guards/auth.guard';
 import { HomeComponent } from './components';
 import { ProductDetailResolver } from './resolvers/product-detail/product-detail.resolver';
-import { ProductService } from './services/product.service';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -11,10 +10,12 @@ const routes: Routes = [
     path: 'account',
     loadChildren: () => import('../../modules/account/account.module').then(m => m.AccountModule),
     canActivate: [AuthGuard],
+    data: { breadcrumb: 'Account' },
   },
   {
     path: 'product/:id',
     loadChildren: () => import('../product/product.module').then(m => m.ProductModule),
+    data: { breadcrumb: 'Product' },
     resolve: {
       productDetails: ProductDetailResolver
     }

@@ -8,6 +8,7 @@ import { AuthHeaderComponent } from './components/auth-header/auth-header.compon
 import { BreadcrumbComponent } from './components/breadcrumb/breadcrumb.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { HeaderComponent } from './components/header/header.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -23,6 +24,7 @@ import { HeaderComponent } from './components/header/header.component';
   imports: [
     CommonModule,
     RouterModule,
+    ReactiveFormsModule,
     CoreModule
   ],
   exports: [

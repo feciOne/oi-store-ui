@@ -5,9 +5,9 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class FilterByPipe implements PipeTransform {
 
-  transform(list: any[], key: string, value: number | string | null): any[] {
+  transform(list: any[], key: string, value: number | string | null, notEqual = false): any[] {
     if (!list.length) return list;
 
-    return list.filter(item => item[key] === value);
+    return list.filter(item => notEqual ? item[key] !== value : item[key] === value);
   }
 }

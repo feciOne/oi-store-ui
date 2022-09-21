@@ -1,4 +1,5 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { BreadcrumbService, MenuItem } from 'src/app/modules/core/services/breadcrumb/breadcrumb.service';
 
 @Component({
   selector: 'app-breadcrumb',
@@ -7,10 +8,15 @@ import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class BreadcrumbComponent implements OnInit {
+  menuItems: MenuItem[] = [];
 
-  constructor() { }
+  constructor(private breadcrumbService: BreadcrumbService, private cdRef: ChangeDetectorRef) { }
 
   ngOnInit(): void {
-  }
+    this.breadcrumbService.menuItems$.subscribe(items => {
+      this.menuItems = items;
 
+      this.cdRef.detectChanges();
+    });
+  }
 }

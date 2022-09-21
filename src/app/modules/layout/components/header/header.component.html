@@ -140,10 +140,10 @@
           </div>
         </div>
         <div class="col-xxl-6 col-lg-5 d-none d-lg-block">
-          <form action="#" class="search-header">
+          <form [formGroup]="searchForm" class="search-header">
             <div class="input-group">
-              <input type="text" class="form-control border-end-0" placeholder="Search for products.."
-                aria-label="Search for products.." aria-describedby="basic-addon2" />
+              <input class="form-control border-end-0" placeholder="Search for products.."
+                aria-label="Search for products.." aria-describedby="basic-addon2" formControlName="searchTerm" />
               <span class="input-group-text bg-transparent" id="basic-addon2">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
                   stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"

@@ -6,6 +6,7 @@ import { ProductService } from '../../services/product.service';
 import { ProductListItem } from 'src/app/modules/core/models/product.model';
 import { environment } from 'src/environments/environment';
 import { FormControl, FormGroup } from '@angular/forms';
+import { ProductSearchService } from 'src/app/modules/core/services/product-search/product-search.service';
 
 @Component({
   selector: 'app-home',
@@ -28,6 +29,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   constructor(private readonly categoryService: CategoryService,
               private readonly productService: ProductService,
+              private readonly productSearchService: ProductSearchService,
               private cdRef: ChangeDetectorRef) { }
 
   ngOnInit(): void {
@@ -37,7 +39,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     });
 
     this.total$ = this.productService.total$;
-    this.products$ = merge(this.categoryService.selectedCategory$, this.filterForm.valueChanges).pipe(
+    this.products$ = merge(this.categoryService.selectedCategory$, this.filterForm.valueChanges, this.productSearchService.searchTerm$).pipe(
       switchMap(() => this.productService.getProducts(this.filterForm.get('page')?.value, this.filterForm.get('pageSize')?.value))
     )
 

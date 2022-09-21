@@ -7,8 +7,13 @@ const routes: Routes = [
   {
     path: '',
     component: MainLayoutComponent,
+    data: { breadcrumb: 'Home' },
     children: [
-      { path: '', loadChildren: () => import('./modules/home/home.module').then(m => m.HomeModule) }
+      {
+        path: '',
+        loadChildren: () => import('./modules/home/home.module').then(m => m.HomeModule),
+        data: { breadcrumb: null },
+      }
     ]
   },
   {

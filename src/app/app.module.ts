@@ -5,6 +5,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AuthTokenInterceptor } from './modules/core/interceptors/auth-token/auth-token.interceptor';
+import { ErrorInterceptor } from './modules/core/interceptors/error/error.interceptor';
 import { LayoutModule } from './modules/layout/layout.module';
 import { NotFoundModule } from './modules/not-found/not-found.module';
 import { TranslocoRootModule } from './transloco-root.module';
@@ -25,6 +26,11 @@ import { TranslocoRootModule } from './transloco-root.module';
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthTokenInterceptor,
+      multi: true
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: ErrorInterceptor,
       multi: true
     }
   ],

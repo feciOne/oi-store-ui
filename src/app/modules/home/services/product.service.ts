@@ -9,6 +9,7 @@ import { PAGINATION, PARAMS } from '../../core/models/params.enum';
 import { ProductAttribute, ProductListItem } from '../../core/models/product.model';
 import { BaseApiService } from '../../core/services/base-api.service';
 import { CategoryService } from '../../core/services/category/category.service';
+import { ProductSearchService } from '../../core/services/product-search/product-search.service';
 
 @Injectable({
   providedIn: 'root'
@@ -19,7 +20,9 @@ export class ProductService {
   private total$$ = new BehaviorSubject<number>(0);
   total$!: Observable<number>;
 
-  constructor(private baseApiService: BaseApiService, private categoryService: CategoryService) {
+  constructor(private baseApiService: BaseApiService,
+              private productSearchService: ProductSearchService,
+              private categoryService: CategoryService) {
     this.total$ = this.total$$.asObservable();
   }
 
@@ -49,6 +52,7 @@ export class ProductService {
 
   getProducts(page: number, pageSize: number, categoryId?: number): Observable<ProductListItem[]> {
     const catId = this.categoryService.getSelectedCategoryId();
+    const searchTerm = this.productSearchService.searchTerm;
 
     if (catId) categoryId = catId;
     if (!this.isPageAvailable(page, pageSize)) page = 1;
@@ -56,6 +60,7 @@ export class ProductService {
     const params: BaseOptionsRequest = {
       [PARAMS.populate]: 'images,category',
       [PARAMS.byCategoryId]: categoryId ? categoryId : null,
+      [PARAMS.byProductName]: searchTerm ? searchTerm : null,
       [PAGINATION.page]: page && page !== 1 ? page : null,
       [PAGINATION.pageSize]: pageSize ? pageSize : null
     };

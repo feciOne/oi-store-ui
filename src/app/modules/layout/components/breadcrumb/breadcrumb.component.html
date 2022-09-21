@@ -5,11 +5,15 @@
       <!-- col -->
       <div class="col-12">
         <!-- breadcrumb -->
-        <nav aria-label="breadcrumb">
+        <nav [attr.aria-label]="'breadcrumb'">
           <ol class="breadcrumb mb-0">
-            <li class="breadcrumb-item"><a href="#!">Home</a></li>
-            <li class="breadcrumb-item"><a href="#!">Shop</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Snacks &amp; Munchies</li>
+            <li *ngFor="let item of menuItems | filterBy:'label':null:true; last as isLast"
+                class="breadcrumb-item"
+                [ngClass]="{'active': isLast}"
+                [attr.aria-current]="'page'">
+                <ng-container *ngIf="isLast; else elseBlock">{{ item.label }}</ng-container>
+                <ng-template #elseBlock><a [routerLink]="item.url">{{ item.label }}</a></ng-template>
+            </li>
           </ol>
         </nav>
       </div>
